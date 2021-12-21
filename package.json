@@ -4,8 +4,10 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix watch",
+    "build": "npm run build: css && remix build",
+    "build:css": "tailwindcss -i ./app/styles/tailwind.css -o ./app/tailwind.css --minify",
+    "dev": "concurrently \"npm run dev:css\" \"remix watch\"",
+    "dev:css": "tailwindcss -i ./app/styles/tailwind.css -o ./app/tailwind.css --watch",
     "postinstall": "remix setup node",
     "dev:netlify": "cross-env NODE_ENV=development netlify dev"
   },
@@ -21,7 +23,9 @@
     "@remix-run/dev": "^1.0.6",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
+    "tailwindcss": "^3.0.7",
     "typescript": "^4.1.2"
   },
   "engines": {

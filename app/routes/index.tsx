@@ -1,9 +1,22 @@
-import type { MetaFunction, LoaderFunction } from "remix";
+import type { MetaFunction, LoaderFunction, LinksFunction } from "remix";
 import { useLoaderData, json, Link } from "remix";
+import globalStylesUrl from "~/styles/global.css";
+import darkStylesUrl from "~/styles/dark.css";
 
 type IndexData = {
   resources: Array<{ name: string; url: string }>;
   demos: Array<{ name: string; to: string }>;
+};
+
+export let links: LinksFunction = () => {
+  return [
+    { rel: "stylesheet", href: globalStylesUrl },
+    {
+      rel: "stylesheet",
+      href: darkStylesUrl,
+      media: "(prefers-color-scheme: dark)"
+    },
+  ];
 };
 
 // Loaders provide data to components and are only ever called on the server, so
@@ -61,7 +74,7 @@ export default function Index() {
   return (
     <div className="remix__page">
       <main>
-        <h2>Welcome to Remix!</h2>
+        <h2 className="heading">Welcome to Remix!</h2>
         <p>We're stoked that you're here. 🥳</p>
         <p>
           Feel free to take a look around the code to see how Remix does things,
