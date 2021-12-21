@@ -11,6 +11,8 @@ import {
 import type { LinksFunction } from "remix";
 
 import styles from "./tailwind.css"
+import globalStylesUrl from "~/styles/global.css";
+import darkStylesUrl from "~/styles/dark.css";
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
@@ -18,8 +20,15 @@ export let links: LinksFunction = () => {
     {
       rel: "stylesheet", href: styles
     },
+    { rel: "stylesheet", href: globalStylesUrl },
+    {
+      rel: "stylesheet",
+      href: darkStylesUrl,
+      media: "(prefers-color-scheme: dark)"
+    },
   ];
 };
+
 
 // https://remix.run/api/conventions#default-export
 // https://remix.run/api/conventions#route-filenames
