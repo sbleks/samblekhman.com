@@ -49,7 +49,7 @@ export default function AEPiIndexRoute() {
     transition.state === 'submitting' && setLoaded(true)
   }, [transition])
   return (
-    <div className='flex flex-col items-center justify-center h-screen max-w-4xl gap-8 m-auto'>
+    <div className='flex flex-col items-center justify-center max-w-4xl min-h-full gap-8 p-16 m-auto'>
       <h1 className='text-4xl font-semibold'>AEPi Donation Link Generator</h1>
       <Form method='post' className='w-full' autoComplete='off'>
         <fieldset />

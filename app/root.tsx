@@ -117,7 +117,7 @@ function Document({
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='h-screen'>
         {children}
         <ScrollRestoration />
         <Scripts />
