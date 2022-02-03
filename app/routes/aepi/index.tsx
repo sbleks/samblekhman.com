@@ -204,7 +204,7 @@ export default function AEPiIndexRoute() {
           <div>
             <p className='font-medium'>Donation link:</p>
             <p
-              className='p-4 m-6 font-mono bg-gray-100 rounded-lg'
+              className='p-4 m-6 font-mono break-words bg-gray-100 rounded-lg'
               id='constructedLink'
             >
               {constructedLink}
