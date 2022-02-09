@@ -19,9 +19,9 @@ export const action: ActionFunction = async ({ request }) => {
 function constructLink(parts: linkParts) {
   let urlParts = parts
   delete urlParts.currency
-  console.log(urlParts)
+  // console.log(urlParts)
   let linkKeys = Object.keys(urlParts)
-  console.log(linkKeys)
+  // console.log(linkKeys)
   let urlBase = 'https://aepi.org/donate/?'
   let completeURL = urlBase
   if (!linkKeys.length || linkKeys.length === 0) {
@@ -49,7 +49,7 @@ export default function AEPiIndexRoute() {
     transition.state === 'submitting' && setLoaded(true)
   }, [transition])
   return (
-    <div className='flex flex-col items-center justify-center max-w-4xl min-h-full gap-8 p-16 m-auto'>
+    <div className='flex flex-col items-center justify-center max-w-4xl min-h-full gap-8 p-16 m-auto dark:text-gray-50'>
       <h1 className='text-4xl font-semibold'>AEPi Donation Link Generator</h1>
       <Form method='post' className='w-full' autoComplete='off'>
         <fieldset />
@@ -204,20 +204,20 @@ export default function AEPiIndexRoute() {
           <div>
             <p className='font-medium'>Donation link:</p>
             <p
-              className='p-4 m-6 font-mono break-words bg-gray-100 rounded-lg'
+              className='p-4 m-6 font-mono break-words bg-gray-100 dark:bg-slate-600 rounded-lg'
               id='constructedLink'
             >
               {constructedLink}
             </p>
             <div className='flex gap-4'>
               <button
-                className='clipboard text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                className='clipboard text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                 onClick={() => copy.default(constructedLink)}
               >
                 Copy to clipboard
               </button>
               <button
-                className='text-blue-800 hover:bg-blue-100 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border-2 border-blue-800'
+                className='text-blue-800 hover:bg-blue-100 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:text-gray-50 dark:hover:bg-blue-900 dark:focus:ring-blue-600 dark:border-2 dark:border-blue-500 border-2 border-blue-800'
                 onClick={() => window.open(constructedLink)}
               >
                 Open Link in new page
