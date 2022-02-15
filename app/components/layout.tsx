@@ -89,7 +89,7 @@ function DrawerExample() {
               {/* <SB /> */}
               {/* <img src={S()} alt="" className="h-20 text-white" /> */}
               {/* <p className="font-cursive text-7xl">SB</p> */}
-              <svg className="aspect-square h-5 text-white">
+              <svg className="mt-2 aspect-square h-10 text-white">
                 <svg viewBox="0 0 117.98667 185.42667" fill="currentColor">
                   <g
                     id="g10"

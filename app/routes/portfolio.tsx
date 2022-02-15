@@ -22,7 +22,7 @@ export const meta: MetaFunction = () => {
 export default function () {
   return (
     <div className="mx-auto mb-6 grid max-w-7xl gap-4 lg:grid-cols-2">
-      <ProjectCard />
+      <ProjectCard external projectLink="https://google.com" />
       <ProjectCard
         key="AEPi"
         projectLink="/aepi"
