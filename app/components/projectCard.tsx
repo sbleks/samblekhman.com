@@ -15,7 +15,7 @@ export default function ProjectCard({
   external?: boolean
 }) {
   return (
-    <div className="flex w-full justify-center">
+    <div className="group flex w-full justify-center transition">
       <div className="m-2 max-w-2xl overflow-hidden rounded-lg border-gray-700 bg-gray-800 shadow-md md:rounded-xl">
         <LinkSwitch external={external} projectLink={projectLink}>
           <>
@@ -23,15 +23,31 @@ export default function ProjectCard({
               <img className="" src={safariBar} alt="product image" />
             </div>
             <img
-              className="mb-6 w-full 
-            object-cover object-top lg:h-72"
+              className="mb-6 h-72 
+            w-full object-cover object-top"
               src={projectImage}
               alt="product image"
             />
             <div className="px-5 pb-5">
               <a href="#">
-                <h3 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                <h3 className="flex items-center text-xl font-semibold tracking-tight text-gray-900 transition group-hover:text-blue-600 dark:text-white">
                   {projectName}
+                  <span className="hidden text-blue-600 transition group-hover:inline">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="inline h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                  </span>
                 </h3>
               </a>
             </div>
