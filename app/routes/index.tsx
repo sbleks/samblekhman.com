@@ -40,9 +40,9 @@ export default function Index() {
             <div className="prose prose-lg mb-6 dark:prose-invert">
               <p>
                 I am an operations and technology engineer that believes in
-                making the world a better place. I work with organizations that
-                make an impact in the world we live today and on the future
-                generation.
+                making the world a better place. I work with organizations
+                making an impact on both the world as we know it today and,
+                inexorably, on its future.
               </p>
               <p>
                 I am currently the Director of Operations for the AEPi

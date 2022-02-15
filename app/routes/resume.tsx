@@ -1,4 +1,4 @@
-import resume from '~/assets/Resume.png'
+import resume from '~/assets/resume.png'
 
 export default function ResumePage() {
   return (
