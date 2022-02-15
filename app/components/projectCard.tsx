@@ -30,9 +30,9 @@ export default function ProjectCard({
             />
             <div className="px-5 pb-5">
               <a href="#">
-                <h3 className="flex items-center text-xl font-semibold tracking-tight text-gray-900 transition group-hover:text-blue-600 dark:text-white">
+                <h3 className="flex items-center text-xl font-semibold tracking-tight text-gray-900 transition dark:text-white md:group-hover:text-blue-600">
                   {projectName}
-                  <span className="hidden text-blue-600 transition group-hover:inline">
+                  <span className="hidden text-blue-600 transition md:group-hover:inline">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="inline h-6 w-6"
