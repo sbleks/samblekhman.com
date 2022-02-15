@@ -1,68 +1,55 @@
-import type { MetaFunction, LoaderFunction, LinksFunction } from 'remix'
-import { useLoaderData, json, Link } from 'remix'
+import {
+  ActionFunction,
+  Form,
+  Link,
+  LinksFunction,
+  MetaFunction,
+  useActionData,
+} from 'remix'
+import stylesURL from '~/styles/tailwind.css'
+import Layout from '~/components/layout'
 
-type IndexData = {
-  resources: Array<{ name: string; url: string }>
-  demos: Array<{ name: string; to: string }>
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: 'stylesheet',
+      href: stylesURL,
+    },
+  ]
 }
 
-// Loaders provide data to components and are only ever called on the server, so
-// you can connect to a database or run any server side code you want right next
-// to the component that renders it.
-// https://remix.run/api/conventions#loader
-// export let loader: LoaderFunction = () => {
-//   let data: IndexData = {
-//     resources: [
-//       {
-//         name: 'Remix Docs',
-//         url: 'https://remix.run/docs',
-//       },
-//       {
-//         name: 'React Router Docs',
-//         url: 'https://reactrouter.com/docs',
-//       },
-//       {
-//         name: 'Remix Discord',
-//         url: 'https://discord.gg/VBePs6d',
-//       },
-//     ],
-//     demos: [
-//       {
-//         to: 'demos/actions',
-//         name: 'Actions',
-//       },
-//       {
-//         to: 'demos/about',
-//         name: 'Nested Routes, CSS loading/unloading',
-//       },
-//       {
-//         to: 'demos/params',
-//         name: 'URL Params and Error Boundaries',
-//       },
-//     ],
-//   }
-
-//   // https://remix.run/api/remix#json
-//   return json(data)
-// }
-
-// https://remix.run/api/conventions#meta
-export let meta: MetaFunction = () => {
-  return {
-    title: "Sam Blekhman's Website",
-    description: 'Welcome!',
-  }
-}
-
-// https://remix.run/guides/routing#index-routes
 export default function Index() {
-  // let data = useLoaderData<IndexData>()
-
   return (
-    <div className='flex justify-center p-6 align-middle '>
-      <main>
-        <h2 className='text-4xl font-bold'>Welcome</h2>
-      </main>
-    </div>
+    <>
+      <div className="py-24 lg:py-32">
+        <div className="relative z-10 mx-auto max-w-7xl pl-4 pr-8 sm:px-6 lg:px-8">
+          <h1 className="font-cursive text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+            Sam Blekhman
+          </h1>
+          <p className="mt-6 max-w-3xl text-xl text-gray-500 dark:text-gray-400">
+            Operations and Technology Engineer
+          </p>
+        </div>
+      </div>
+      <section>
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8 lg:pb-16">
+          <div className="mx-auto max-w-7xl lg:ml-auto">
+            <h2 className="mb-4 text-3xl font-extrabold text-white">
+              About me
+            </h2>
+            <p className="prose prose-lg dark:prose-invert">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+              explicabo quisquam vero, dicta, iure sunt aut recusandae tempora
+              itaque, architecto voluptas adipisci autem similique quaerat ea
+              reprehenderit consequatur nostrum officiis. Facere ex unde,
+              officia nulla autem ab, perspiciatis veniam, in fugit aperiam rem
+              nesciunt excepturi incidunt eos necessitatibus quisquam?
+              Recusandae illo minus amet maxime explicabo laborum corporis ea.
+              Nulla, asperiores?
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
