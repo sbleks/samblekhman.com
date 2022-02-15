@@ -37,16 +37,37 @@ export default function Index() {
             <h2 className="mb-4 text-3xl font-extrabold text-white">
               About me
             </h2>
-            <p className="prose prose-lg dark:prose-invert">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              explicabo quisquam vero, dicta, iure sunt aut recusandae tempora
-              itaque, architecto voluptas adipisci autem similique quaerat ea
-              reprehenderit consequatur nostrum officiis. Facere ex unde,
-              officia nulla autem ab, perspiciatis veniam, in fugit aperiam rem
-              nesciunt excepturi incidunt eos necessitatibus quisquam?
-              Recusandae illo minus amet maxime explicabo laborum corporis ea.
-              Nulla, asperiores?
-            </p>
+            <div className="prose prose-lg mb-6 dark:prose-invert">
+              <p>
+                I am an operations and technology engineer that believes in
+                making the world a better place. I work with organizations that
+                make an impact in the world we live today and on the future
+                generation.
+              </p>
+              <p>
+                I am currently the Director of Operations for the AEPi
+                Foundation. We are an international charity focused on
+                leadership training and financial support for Jewish students on
+                College campuses. In my role, I am responsible for keeping the
+                team organized, together, and focused on our mission. I am in
+                charge of implementing solutions and processes to reduce
+                friction and cognitive load for the team.
+              </p>
+              <p>
+                I also develop web applications for clients, some of which you
+                can see in my <Link to="/portfolio">portfolio</Link>. If you
+                would like to get in contact with me about a potential project,
+                email me at{' '}
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="mailto:sam@bleks.dev"
+                >
+                  sam@bleks.dev
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </div>
       </section>
