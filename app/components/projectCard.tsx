@@ -16,15 +16,15 @@ export default function ProjectCard({
 }) {
   return (
     <div className="flex w-full justify-center">
-      <div className="m-2 max-w-2xl overflow-hidden rounded-lg bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 md:rounded-xl">
-        <LinkSwitch external projectLink={projectLink}>
+      <div className="m-2 max-w-2xl overflow-hidden rounded-lg border-gray-700 bg-gray-800 shadow-md md:rounded-xl">
+        <LinkSwitch external={external} projectLink={projectLink}>
           <>
             <div>
               <img className="" src={safariBar} alt="product image" />
             </div>
             <img
               className="mb-6 w-full 
-            object-cover lg:h-72"
+            object-cover object-top lg:h-72"
               src={projectImage}
               alt="product image"
             />
@@ -51,7 +51,7 @@ function LinkSwitch({
   children: React.ReactElement
   projectLink: string
 }) {
-  if (external) {
+  if (external === true) {
     return (
       <a rel="noopener noreferrer" target="_blank" href={projectLink}>
         {children}
