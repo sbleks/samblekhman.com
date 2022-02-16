@@ -14,6 +14,11 @@ import sqliteIcon from '~/assets/svgs/sqlite.svg'
 import tailwindIcon from '~/assets/svgs/tailwindcss-icon.svg'
 import wordpressIcon from '~/assets/svgs/wordpress-icon.svg'
 import javascriptIcon from '~/assets/svgs/javascript.svg'
+import netlifyIcon from '~/assets/svgs/netlify.svg'
+import flyIcon from '~/assets/svgs/fly.svg'
+import reactIcon from '~/assets/svgs/react.svg'
+import remixIcon from '~/assets/svgs/remix-icon.svg'
+import reactrouterIcon from '~/assets/svgs/react-router.svg'
 
 export const SamBlekhmanLogo = () => {
   return (
@@ -80,6 +85,11 @@ export const svgLookup = {
   'Tailwind CSS': tailwindIcon,
   WordPress: wordpressIcon,
   Javascript: javascriptIcon,
+  Netlify: netlifyIcon,
+  Fly: flyIcon,
+  React: reactIcon,
+  Remix: remixIcon,
+  'React Router': reactrouterIcon,
 }
 
 export type svgLookupObject = {
@@ -96,4 +106,9 @@ export type svgLookupObject = {
   'Tailwind CSS': string
   WordPress: string
   Javascript: string
+  Netlify: string
+  Fly: string
+  React: string
+  Remix: string
+  'React Router': string
 }

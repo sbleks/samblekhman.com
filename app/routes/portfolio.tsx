@@ -40,6 +40,9 @@ export default function () {
           'NodeJS',
           'Prisma',
           'Tailwind CSS',
+          'Netlify',
+          'React',
+          'React Router',
         ]}
       />
       <ProjectCard
@@ -47,7 +50,15 @@ export default function () {
         projectLink="/aepi"
         projectName="AEPi Donation Link Generator"
         projectImage={aepiScreenshot}
-        techstack={['Typescript', 'Tailwind CSS', 'NodeJS', 'Git']}
+        techstack={[
+          'Typescript',
+          'Tailwind CSS',
+          'NodeJS',
+          'Git',
+          'Netlify',
+          'React',
+          'Remix',
+        ]}
       />
       <ProjectCard
         key="BPN"
@@ -83,7 +94,15 @@ export default function () {
       />
       <ProjectCard
         projectLink="."
-        techstack={['Git', 'Typescript', 'SQLite', 'Prisma']}
+        techstack={[
+          'Git',
+          'Typescript',
+          'SQLite',
+          'Prisma',
+          'Fly',
+          'React',
+          'Remix',
+        ]}
       />
     </div>
   )
