@@ -19,7 +19,6 @@ export default function ProjectCard({
   techstack?: Array<keyof svgLookupObject>
   description?: string
 }) {
-  console.log(svgLookup)
   return (
     <div className="group flex w-full justify-center transition">
       <div className="m-2 max-w-2xl overflow-hidden rounded-lg border-gray-700 bg-gray-800 shadow-md md:rounded-xl">
