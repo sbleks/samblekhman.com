@@ -35,14 +35,28 @@ export default function () {
         projectImage={rmeScreenshot}
         techstack={[
           'Javascript',
-          'Git',
-          'MySQL',
           'NodeJS',
-          'Prisma',
-          'Tailwind CSS',
-          'Netlify',
+          'Git',
           'React',
           'React Router',
+          'Tailwind CSS',
+          'Prisma',
+          'MySQL',
+          'Netlify',
+        ]}
+      />
+      <ProjectCard
+        projectLink="https://sams-jokes.herokuapp.com/"
+        external
+        techstack={[
+          'Typescript',
+          'NodeJS',
+          'Git',
+          'Remix',
+          'React',
+          'Prisma',
+          'Postgres',
+          'Heroku',
         ]}
       />
       <ProjectCard
@@ -52,12 +66,12 @@ export default function () {
         projectImage={aepiScreenshot}
         techstack={[
           'Typescript',
-          'Tailwind CSS',
           'NodeJS',
           'Git',
-          'Netlify',
-          'React',
           'Remix',
+          'React',
+          'Tailwind CSS',
+          'Netlify',
         ]}
       />
       <ProjectCard
@@ -91,18 +105,6 @@ export default function () {
         projectName="AEPi Tulane Alumni Reunion Landing Page"
         projectImage={tulaneScreenshot}
         techstack={['WordPress', 'php']}
-      />
-      <ProjectCard
-        projectLink="."
-        techstack={[
-          'Git',
-          'Typescript',
-          'SQLite',
-          'Prisma',
-          'Fly',
-          'React',
-          'Remix',
-        ]}
       />
     </div>
   )

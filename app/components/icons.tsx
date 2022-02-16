@@ -18,6 +18,7 @@ import netlifyIcon from '~/assets/svgs/netlify.svg'
 import flyIcon from '~/assets/svgs/fly.svg'
 import reactIcon from '~/assets/svgs/react.svg'
 import remixIcon from '~/assets/svgs/remix-icon.svg'
+import herokuIcon from '~/assets/svgs/heroku-icon.svg'
 import reactrouterIcon from '~/assets/svgs/react-router.svg'
 
 export const SamBlekhmanLogo = () => {
@@ -90,6 +91,7 @@ export const svgLookup = {
   React: reactIcon,
   Remix: remixIcon,
   'React Router': reactrouterIcon,
+  Heroku: herokuIcon,
 }
 
 export type svgLookupObject = {
@@ -111,4 +113,5 @@ export type svgLookupObject = {
   React: string
   Remix: string
   'React Router': string
+  Heroku: string
 }
