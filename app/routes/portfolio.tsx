@@ -33,12 +33,21 @@ export default function () {
         projectLink="https://ratemyestate.organizemypeople.com/"
         projectName="RateMyEstate"
         projectImage={rmeScreenshot}
+        techstack={[
+          'Javascript',
+          'Git',
+          'MySQL',
+          'NodeJS',
+          'Prisma',
+          'Tailwind CSS',
+        ]}
       />
       <ProjectCard
         key="AEPi"
         projectLink="/aepi"
         projectName="AEPi Donation Link Generator"
         projectImage={aepiScreenshot}
+        techstack={['Typescript', 'Tailwind CSS', 'NodeJS', 'Git']}
       />
       <ProjectCard
         key="BPN"
@@ -46,6 +55,7 @@ export default function () {
         projectLink="https://bpn.aepi.org/"
         projectName="AEPi Business & Professional Network"
         projectImage={bpnScreenshot}
+        techstack={['WordPress', 'php']}
       />
       <ProjectCard
         key="JF"
@@ -53,6 +63,7 @@ export default function () {
         projectLink="https://www.aepi.org/jim-memorial/"
         projectName="Jim Fleischer Memorial"
         projectImage={jfScreenshot}
+        techstack={['WordPress', 'php']}
       />
       <ProjectCard
         key="Convention"
@@ -60,6 +71,7 @@ export default function () {
         projectLink="https://www.aepi.org/donateconvention/"
         projectName="AEPi's 2021 Convention Fundraiser"
         projectImage={conventionScreenshot}
+        techstack={['WordPress', 'php']}
       />
       <ProjectCard
         key="Tulane"
@@ -67,8 +79,12 @@ export default function () {
         projectLink="https://www.aepi.org/tulanereunion/"
         projectName="AEPi Tulane Alumni Reunion Landing Page"
         projectImage={tulaneScreenshot}
+        techstack={['WordPress', 'php']}
       />
-      <ProjectCard projectLink="." />
+      <ProjectCard
+        projectLink="."
+        techstack={['Git', 'Typescript', 'SQLite', 'Prisma']}
+      />
     </div>
   )
 }

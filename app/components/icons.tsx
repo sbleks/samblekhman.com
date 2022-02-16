@@ -1,3 +1,20 @@
+import path from 'path'
+import fs from 'fs/promises'
+
+import expressIcon from '~/assets/svgs/express.svg'
+import gitIcon from '~/assets/svgs/git-icon.svg'
+import typescriptIcon from '~/assets/svgs/typescript.svg'
+import mongodbIcon from '~/assets/svgs/mongodb.svg'
+import mysqlIcon from '~/assets/svgs/mysql-icon.svg'
+import nodejsIcon from '~/assets/svgs/nodejs-icon.svg'
+import phpIcon from '~/assets/svgs/php-alt.svg'
+import postgresqlIcon from '~/assets/svgs/postgresql.svg'
+import prismaIcon from '~/assets/svgs/prisma.svg'
+import sqliteIcon from '~/assets/svgs/sqlite.svg'
+import tailwindIcon from '~/assets/svgs/tailwindcss-icon.svg'
+import wordpressIcon from '~/assets/svgs/wordpress-icon.svg'
+import javascriptIcon from '~/assets/svgs/javascript.svg'
+
 export const SamBlekhmanLogo = () => {
   return (
     <svg className="aspect-square h-10 text-white">
@@ -31,3 +48,52 @@ export const MENU = () => (
     />
   </svg>
 )
+
+export const rightArrowIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M13 7l5 5m0 0l-5 5m5-5H6"
+    />
+  </svg>
+)
+
+export const svgLookup = {
+  Express: expressIcon,
+  Git: gitIcon,
+  Typescript: typescriptIcon,
+  MongoDB: mongodbIcon,
+  MySQL: mysqlIcon,
+  NodeJS: nodejsIcon,
+  php: phpIcon,
+  Postgres: postgresqlIcon,
+  Prisma: prismaIcon,
+  SQLite: sqliteIcon,
+  'Tailwind CSS': tailwindIcon,
+  WordPress: wordpressIcon,
+  Javascript: javascriptIcon,
+}
+
+export type svgLookupObject = {
+  Express: string
+  Git: string
+  Typescript: string
+  MongoDB: string
+  MySQL: string
+  NodeJS: string
+  php: string
+  Postgres: string
+  Prisma: string
+  SQLite: string
+  'Tailwind CSS': string
+  WordPress: string
+  Javascript: string
+}
