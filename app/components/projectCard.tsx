@@ -60,7 +60,12 @@ export default function ProjectCard({
                   const iconLink = getTechIcon(tech)
                   if (!iconLink) return null
                   return (
-                    <img className="h-6 text-white" src={iconLink} alt={tech} />
+                    <img
+                      key={tech}
+                      className="h-6 text-white"
+                      src={iconLink}
+                      alt={tech}
+                    />
                   )
                 })}
               </div>
