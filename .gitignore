@@ -3,5 +3,5 @@ node_modules
 /netlify/functions/server/build
 /public/build
 /.netlify
-/app/tailwind.css
 .DS_Store
+/netlify/functions/server/index.js

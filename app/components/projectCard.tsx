@@ -28,8 +28,8 @@ export default function ProjectCard({
               <img className="" src={safariBar} alt="product image" />
             </div>
             <img
-              className="mb-6 h-72 
-            w-full object-cover object-top"
+              className="mb-4 h-52 
+            w-full object-cover object-top sm:mb-6 sm:h-72 md:h-72"
               src={projectImage}
               alt="product image"
             />
@@ -54,7 +54,7 @@ export default function ProjectCard({
                 </span>
               </h3>
               <p>{description}</p>
-              <div className="mt-2 flex items-center space-x-4">
+              <div className="mt-2 flex flex-wrap items-center space-x-2 sm:space-x-4">
                 {techstack?.map((tech) => {
                   const iconLink = getTechIcon(tech)
                   if (!iconLink) return null
@@ -63,7 +63,7 @@ export default function ProjectCard({
                       <img
                         key={tech}
                         title={tech}
-                        className="h-6 text-white"
+                        className="my-1 h-6 text-white md:my-0"
                         src={iconLink}
                         alt={tech}
                       />
