@@ -62,7 +62,7 @@ export default function () {
           'Postgres',
           'Heroku',
         ]}
-        description="Sam's Jokes is your home for storing jokes online. Create an account, store a joke for the world to see, delete it, and add more! This is a full-stack application written in TypeScript with authentication and sessions cookies deployed to Heroku."
+        description="Sam's Jokes is your home for storing jokes online. Create an account, store a joke for the world to see, delete it, and add more! This is a full-stack application written in TypeScript with authentication and sessions cookies."
       />
       <ProjectCard
         key="AEPi"
