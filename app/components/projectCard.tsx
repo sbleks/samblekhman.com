@@ -53,7 +53,6 @@ export default function ProjectCard({
                   </svg>
                 </span>
               </h3>
-              <p>{description}</p>
               <div className="mt-2 flex flex-wrap items-center space-x-2 sm:space-x-4">
                 {techstack?.map((tech) => {
                   const iconLink = getTechIcon(tech)
@@ -71,6 +70,9 @@ export default function ProjectCard({
                   )
                 })}
               </div>
+              <p className="mt-2 text-sm dark:text-gray-100 sm:mt-4 sm:text-base">
+                {description}
+              </p>
             </div>
           </>
         </LinkSwitch>

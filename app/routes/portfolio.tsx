@@ -8,6 +8,7 @@ import jfScreenshot from '~/assets/jfmemorial.png'
 import rmeScreenshot from '~/assets/rme.png'
 import conventionScreenshot from '~/assets/convention.png'
 import tulaneScreenshot from '~/assets/tulane.png'
+import jokesScreenshot from '~/assets/samsjokes.png'
 
 export const links: LinksFunction = () => {
   return [
@@ -44,9 +45,12 @@ export default function () {
           'MySQL',
           'Netlify',
         ]}
+        description="RateMyEstate is an online Single Page App consisting of a 32-page intake form and a generated report that is displayed after submission that uses a proprietary rating system developed by the RateMyEstate team."
       />
       <ProjectCard
         projectLink="https://sams-jokes.herokuapp.com/"
+        projectName="Sam's Jokes"
+        projectImage={jokesScreenshot}
         external
         techstack={[
           'Typescript',
@@ -58,6 +62,7 @@ export default function () {
           'Postgres',
           'Heroku',
         ]}
+        description="Sam's Jokes is your home for storing jokes online. Create an account, store a joke for the world to see, delete it, and add more! This is a full-stack application written in TypeScript with authentication and sessions cookies deployed to Heroku."
       />
       <ProjectCard
         key="AEPi"
