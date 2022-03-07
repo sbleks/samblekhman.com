@@ -40,24 +40,14 @@ export default function Index() {
             <div className="prose prose-lg mb-6 dark:prose-invert">
               <p>
                 I am an operations and technology engineer that believes in
-                making the world a better place. I work with organizations
-                making an impact on both the world as we know it today and,
-                inexorably, on its future.
+                making the world a better place through software. I work with
+                organizations making an impact on both the world as we know it
+                today and, inexorably, on its future.
               </p>
               <p>
-                I am currently the Director of Operations for the AEPi
-                Foundation. We are an international charity focused on
-                leadership training and financial support for Jewish students on
-                College campuses. In my role, I am responsible for keeping the
-                team organized, together, and focused on our mission. I am in
-                charge of implementing solutions and processes to reduce
-                friction and cognitive load for the team.
-              </p>
-              <p>
-                I also develop web applications for clients, some of which you
-                can see in my <Link to="/portfolio">portfolio</Link>. If you
-                would like to get in contact with me about a potential project,
-                email me at{' '}
+                You can see some of my work in my{' '}
+                <Link to="/portfolio">portfolio</Link>. If you would like to get
+                in contact with me about a potential project, email me at{' '}
                 <a
                   rel="noopener noreferrer"
                   target="_blank"

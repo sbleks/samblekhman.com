@@ -24,7 +24,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <SamBlekhmanLogo />
               </Link>
               <div className="ml-10 hidden space-x-8 sm:block">
-                <Link to="/resume">Resume</Link>
                 <Link to="/portfolio">Portfolio</Link>
               </div>
             </div>
@@ -62,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </g>
               </svg>
             </a>
-            <a
+            {/* <a
               rel="noopener noreferrer"
               target="_blank"
               href="https://www.linkedin.com/in/samblekhman/"
@@ -85,7 +84,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   ></path>
                 </g>
               </svg>
-            </a>
+            </a> */}
             <a
               rel="noopener noreferrer"
               target="_blank"
@@ -157,9 +156,6 @@ function DrawerExample() {
             <div className="flex flex-col space-y-4 text-white">
               <Link reloadDocument to="/">
                 Home
-              </Link>
-              <Link reloadDocument to="/resume">
-                Resume
               </Link>
               <Link reloadDocument to="/portfolio">
                 Portfolio
