@@ -30,12 +30,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {isAEPi ? (
                   <>
                     <span>|</span>
-                    <Link className={isAEPi ? '' : 'hidden'} to="/aepi">
-                      Donation Link Generator
-                    </Link>
-                    <Link className={isAEPi ? '' : 'hidden'} to="/aepi/events">
-                      Event Registration
-                    </Link>
+                    <Link to="/aepi">Donation Link Generator</Link>
+                    <Link to="/aepi/events">Event Registration</Link>
                   </>
                 ) : null}
               </div>
