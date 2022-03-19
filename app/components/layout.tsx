@@ -1,4 +1,4 @@
-import { Link } from 'remix'
+import { Link, useCatch, useLocation } from 'remix'
 import { MENU, SamBlekhmanLogo } from './icons'
 import {
   Drawer,
@@ -14,6 +14,8 @@ import {
 import React from 'react'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation()
+  const isAEPi = location.pathname.indexOf('aepi') > 0
   return (
     <>
       <header>
@@ -25,6 +27,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
               <div className="ml-10 hidden space-x-8 sm:block">
                 <Link to="/portfolio">Portfolio</Link>
+                {isAEPi ? (
+                  <>
+                    <span>|</span>
+                    <Link className={isAEPi ? '' : 'hidden'} to="/aepi">
+                      Donation Link Generator
+                    </Link>
+                    <Link className={isAEPi ? '' : 'hidden'} to="/aepi/events">
+                      Event Registration
+                    </Link>
+                  </>
+                ) : null}
               </div>
             </div>
             <div className="block text-white sm:hidden ">
@@ -33,7 +46,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </nav>
       </header>
-      <main className="overflow-hidden">{children}</main>
+      <main className="flex flex-col overflow-hidden md:flex-grow">
+        {children}
+      </main>
       <footer>
         <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
           <div className="flex justify-center space-x-6 md:order-2">

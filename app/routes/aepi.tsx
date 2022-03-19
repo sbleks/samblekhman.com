@@ -1,4 +1,4 @@
-import { MetaFunction, Outlet } from 'remix'
+import { Link, MetaFunction, Outlet, useCatch } from 'remix'
 
 export const meta: MetaFunction = () => {
   return {
@@ -8,5 +8,14 @@ export const meta: MetaFunction = () => {
 }
 
 export default function AEPI() {
-  return <Outlet />
+  return (
+    <div className="flex min-h-full flex-grow">
+      <Outlet />
+    </div>
+  )
+}
+
+export function CatchBoundary() {
+  const caught = useCatch()
+  return <div className="text-white">uh oh! from aepi route</div>
 }

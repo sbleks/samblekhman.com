@@ -86,7 +86,7 @@ export function CatchBoundary() {
   switch (caught.status) {
     case 401:
       message = (
-        <p>
+        <p className="text-white">
           Oops! Looks like you tried to visit a page that you do not have access
           to.
         </p>
@@ -94,7 +94,9 @@ export function CatchBoundary() {
       break
     case 404:
       message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+        <p className="text-white">
+          Oops! Looks like you tried to visit a page that does not exist.
+        </p>
       )
       break
 
@@ -106,7 +108,7 @@ export function CatchBoundary() {
     <Document title={`${caught.status} ${caught.statusText}`}>
       <ChakraProvider>
         <Layout>
-          <h1>
+          <h1 className="text-white">
             {caught.status}: {caught.statusText}
           </h1>
           {message}
@@ -132,7 +134,7 @@ function Document({
         <title>{title}</title>
         <Links />
       </head>
-      <body className="dark:bg-slate-900">
+      <body className="dark:bg-slate-900 md:flex md:min-h-screen md:flex-col">
         {children}
         <ScrollRestoration />
         <Scripts />

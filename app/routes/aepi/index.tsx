@@ -39,7 +39,7 @@ function constructLink(parts: linkParts) {
   return new URL(completeURL)
 }
 
-export default function AEPiIndexRoute() {
+export default function AEPiDonationLinkGenerator() {
   const transition = useTransition()
   let constructedLink = useActionData()
   const [loaded, setLoaded] = useState(false)
@@ -49,108 +49,108 @@ export default function AEPiIndexRoute() {
     transition.state === 'submitting' && setLoaded(true)
   }, [transition])
   return (
-    <div className='flex flex-col items-center justify-center max-w-4xl min-h-full gap-8 p-16 m-auto dark:text-gray-50'>
-      <h1 className='text-4xl font-semibold'>AEPi Donation Link Generator</h1>
-      <Form method='post' className='w-full' autoComplete='off'>
+    <div className="m-auto flex min-h-full w-full max-w-4xl flex-col items-center justify-center gap-8 p-16 dark:text-gray-50">
+      <h1 className="text-4xl font-semibold">AEPi Donation Link Generator</h1>
+      <Form method="post" className="w-full" autoComplete="off">
         <fieldset />
-        <legend className='sr-only'>Currency</legend>
-        <div className='flex items-center mb-4'>
+        <legend className="sr-only">Currency</legend>
+        <div className="mb-4 flex items-center">
           <input
-            id='US'
-            type='radio'
-            name='currency'
-            value='US'
+            id="US"
+            type="radio"
+            name="currency"
+            value="US"
             onChange={() => setCurrency('US')}
             checked={currency === 'US'}
-            className='w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600'
-            aria-labelledby='US'
-            aria-describedby='US'
+            className="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-blue-600 dark:focus:ring-blue-600"
+            aria-labelledby="US"
+            aria-describedby="US"
           />
           <label
-            htmlFor='US'
-            className='block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+            htmlFor="US"
+            className="ml-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             United States
           </label>
         </div>
 
-        <div className='flex items-center mb-4'>
+        <div className="mb-4 flex items-center">
           <input
-            id='Canada'
-            type='radio'
-            name='currency'
-            value='Canada'
+            id="Canada"
+            type="radio"
+            name="currency"
+            value="Canada"
             onChange={() => setCurrency('Canada')}
             checked={currency === 'Canada'}
-            className='w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600'
-            aria-labelledby='Canada'
-            aria-describedby='Canada'
+            className="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-blue-600 dark:focus:ring-blue-600"
+            aria-labelledby="Canada"
+            aria-describedby="Canada"
           />
           <label
-            htmlFor='Canada'
-            className='block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+            htmlFor="Canada"
+            className="ml-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             Canada
           </label>
         </div>
 
-        <div className='relative z-0 w-full mb-6 group'>
+        <div className="group relative z-0 mb-6 w-full">
           <input
-            type='text'
+            type="text"
             name={currency === 'US' ? 'campaign' : 'canadiancampaign'}
             id={currency === 'US' ? 'campaign' : 'canadiancampaign'}
-            className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            placeholder=' '
+            className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            placeholder=" "
           />
           <label
             htmlFor={currency === 'US' ? 'campaign' : 'canadiancampaign'}
-            className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+            className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
           >
             Campaign Name
           </label>
         </div>
-        <div className='relative z-0 w-full mb-6 group'>
+        <div className="group relative z-0 mb-6 w-full">
           <input
-            type='text'
-            name='fund'
-            id='floating_fund'
-            className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-            placeholder=' '
+            type="text"
+            name="fund"
+            id="floating_fund"
+            className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            placeholder=" "
           />
           <label
-            htmlFor='floating_fund'
-            className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+            htmlFor="floating_fund"
+            className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
           >
             Fund Name
           </label>
         </div>
-        <div className='grid xl:grid-cols-2 xl:gap-6'>
-          <div className='relative z-0 w-full mb-6 group'>
+        <div className="grid xl:grid-cols-2 xl:gap-6">
+          <div className="group relative z-0 mb-6 w-full">
             <input
-              type='number'
-              name='appeal'
-              id='appeal'
-              className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-              placeholder=' '
+              type="number"
+              name="appeal"
+              id="appeal"
+              className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+              placeholder=" "
             />
             <label
-              htmlFor='appeal'
-              className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+              htmlFor="appeal"
+              className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
             >
               Appeal ID
             </label>
           </div>
-          <div className='relative z-0 w-full mb-6 group'>
+          <div className="group relative z-0 mb-6 w-full">
             <input
-              type='number'
-              name='pledge'
-              id='pledge'
-              className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-              placeholder=' '
+              type="number"
+              name="pledge"
+              id="pledge"
+              className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+              placeholder=" "
             />
             <label
-              htmlFor='pledge'
-              className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+              htmlFor="pledge"
+              className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
             >
               Pledge ID
             </label>
@@ -192,32 +192,32 @@ export default function AEPiIndexRoute() {
           </div>
         </div> */}
         <button
-          type='submit'
-          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+          type="submit"
+          className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
         >
           Submit
         </button>
       </Form>
 
-      <div className='w-full'>
+      <div className="w-full">
         {loaded === true && (
           <div>
-            <p className='font-medium'>Donation link:</p>
+            <p className="font-medium">Donation link:</p>
             <p
-              className='p-4 m-6 font-mono break-words bg-gray-100 dark:bg-slate-600 rounded-lg'
-              id='constructedLink'
+              className="m-6 break-words rounded-lg bg-gray-100 p-4 font-mono dark:bg-slate-600"
+              id="constructedLink"
             >
               {constructedLink}
             </p>
-            <div className='flex gap-4'>
+            <div className="flex gap-4">
               <button
-                className='clipboard text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                className="clipboard text-md w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
                 onClick={() => copy.default(constructedLink)}
               >
                 Copy to clipboard
               </button>
               <button
-                className='text-blue-800 hover:bg-blue-100 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:text-gray-50 dark:hover:bg-blue-900 dark:focus:ring-blue-600 dark:border-2 dark:border-blue-500 border-2 border-blue-800'
+                className="text-md w-full rounded-lg border-2 border-blue-800 px-5 py-2.5 text-center font-semibold text-blue-800 hover:bg-blue-100 focus:ring-4 focus:ring-blue-300 dark:border-2 dark:border-blue-500 dark:text-gray-50 dark:hover:bg-blue-900 dark:focus:ring-blue-600 sm:w-auto"
                 onClick={() => window.open(constructedLink)}
               >
                 Open Link in new page
