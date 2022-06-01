@@ -7,5 +7,3 @@ node_modules
 /netlify/functions/server/index.js
 sendgrid.env
 /.env
-
-/app/styles/tailwind.css
