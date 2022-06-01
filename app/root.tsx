@@ -8,8 +8,12 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
-import { MetaFunction, LoaderFunction, json } from "@remix-run/node";
+import type {
+  LinksFunction,
+  MetaFunction,
+  LoaderFunction,
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
 import styles from "~/tailwind.css";
 import Layout from "./components/layout";
 import { ChakraProvider } from "@chakra-ui/react";
