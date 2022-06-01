@@ -1,53 +1,54 @@
-import { SyntheticEvent, useEffect, useState } from 'react'
-import { ActionFunction, Form, useActionData, useTransition } from 'remix'
-import * as copy from 'copy-to-clipboard'
+import { SyntheticEvent, useEffect, useState } from "react";
+import { Form, useActionData, useTransition } from "@remix-run/react";
+import type { ActionFunction } from "@remix-run/node";
+import * as copy from "copy-to-clipboard";
 
 type linkParts = {
-  currency?: String
-  appeal?: String
-  campaign?: String
-  fund?: String
-  pledge?: String
-}
+  currency?: String;
+  appeal?: String;
+  campaign?: String;
+  fund?: String;
+  pledge?: String;
+};
 
 export const action: ActionFunction = async ({ request }) => {
-  let formData = await request.formData()
-  let values = Object.fromEntries(formData)
-  return constructLink(values)
-}
+  let formData = await request.formData();
+  let values = Object.fromEntries(formData);
+  return constructLink(values);
+};
 
 function constructLink(parts: linkParts) {
-  let urlParts = parts
-  delete urlParts.currency
+  let urlParts = parts;
+  delete urlParts.currency;
   // console.log(urlParts)
-  let linkKeys = Object.keys(urlParts)
+  let linkKeys = Object.keys(urlParts);
   // console.log(linkKeys)
-  let urlBase = 'https://aepi.org/donate/?'
-  let completeURL = urlBase
+  let urlBase = "https://aepi.org/donate/?";
+  let completeURL = urlBase;
   if (!linkKeys.length || linkKeys.length === 0) {
-    return
+    return;
   }
 
   for (let key of linkKeys) {
-    if (urlParts[key] === '') {
+    if (urlParts[key] === "") {
     } else if (linkKeys.indexOf(key) === 0) {
-      completeURL += `${key}=${urlParts[key]}`
+      completeURL += `${key}=${urlParts[key]}`;
     } else {
-      completeURL += `&${key}=${urlParts[key]}`
+      completeURL += `&${key}=${urlParts[key]}`;
     }
   }
-  return new URL(completeURL)
+  return new URL(completeURL);
 }
 
 export default function AEPiDonationLinkGenerator() {
-  const transition = useTransition()
-  let constructedLink = useActionData()
-  const [loaded, setLoaded] = useState(false)
-  const [currency, setCurrency] = useState('US')
+  const transition = useTransition();
+  let constructedLink = useActionData();
+  const [loaded, setLoaded] = useState(false);
+  const [currency, setCurrency] = useState("US");
 
   useEffect(() => {
-    transition.state === 'submitting' && setLoaded(true)
-  }, [transition])
+    transition.state === "submitting" && setLoaded(true);
+  }, [transition]);
   return (
     <div className="m-auto flex min-h-full w-full max-w-4xl flex-col items-center justify-center gap-8 p-16 dark:text-gray-50">
       <h1 className="text-4xl font-semibold">AEPi Donation Link Generator</h1>
@@ -60,8 +61,8 @@ export default function AEPiDonationLinkGenerator() {
             type="radio"
             name="currency"
             value="US"
-            onChange={() => setCurrency('US')}
-            checked={currency === 'US'}
+            onChange={() => setCurrency("US")}
+            checked={currency === "US"}
             className="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-blue-600 dark:focus:ring-blue-600"
             aria-labelledby="US"
             aria-describedby="US"
@@ -80,8 +81,8 @@ export default function AEPiDonationLinkGenerator() {
             type="radio"
             name="currency"
             value="Canada"
-            onChange={() => setCurrency('Canada')}
-            checked={currency === 'Canada'}
+            onChange={() => setCurrency("Canada")}
+            checked={currency === "Canada"}
             className="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-blue-600 dark:focus:ring-blue-600"
             aria-labelledby="Canada"
             aria-describedby="Canada"
@@ -97,13 +98,13 @@ export default function AEPiDonationLinkGenerator() {
         <div className="group relative z-0 mb-6 w-full">
           <input
             type="text"
-            name={currency === 'US' ? 'campaign' : 'canadiancampaign'}
-            id={currency === 'US' ? 'campaign' : 'canadiancampaign'}
+            name={currency === "US" ? "campaign" : "canadiancampaign"}
+            id={currency === "US" ? "campaign" : "canadiancampaign"}
             className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
             placeholder=" "
           />
           <label
-            htmlFor={currency === 'US' ? 'campaign' : 'canadiancampaign'}
+            htmlFor={currency === "US" ? "campaign" : "canadiancampaign"}
             className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
           >
             Campaign Name
@@ -227,5 +228,5 @@ export default function AEPiDonationLinkGenerator() {
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -1,23 +1,23 @@
-import React from 'react'
-import { Link } from 'remix'
-import jokesScreenshot from '~/assets/jokes.png'
-import safariBar from '~/assets/safaribar.png'
-import { svgLookup, svgLookupObject } from './icons'
+import React from "react";
+import { Link } from "@remix-run/react";
+import jokesScreenshot from "~/assets/jokes.png";
+import safariBar from "~/assets/safaribar.png";
+import { svgLookup, svgLookupObject } from "./icons";
 
 export default function ProjectCard({
-  projectLink = '/',
-  projectName = 'Jokes App',
+  projectLink = "/",
+  projectName = "Jokes App",
   projectImage = jokesScreenshot,
   external = false,
   techstack,
   description,
 }: {
-  projectLink?: string
-  projectName?: string
-  projectImage?: string
-  external?: boolean
-  techstack?: Array<keyof svgLookupObject>
-  description?: string
+  projectLink?: string;
+  projectName?: string;
+  projectImage?: string;
+  external?: boolean;
+  techstack?: Array<keyof svgLookupObject>;
+  description?: string;
 }) {
   return (
     <div className="group flex w-full justify-center transition">
@@ -55,8 +55,8 @@ export default function ProjectCard({
               </h3>
               <div className="mt-2 flex flex-wrap items-center space-x-2 sm:space-x-4">
                 {techstack?.map((tech) => {
-                  const iconLink = getTechIcon(tech)
-                  if (!iconLink) return null
+                  const iconLink = getTechIcon(tech);
+                  if (!iconLink) return null;
                   return (
                     <>
                       <img
@@ -67,7 +67,7 @@ export default function ProjectCard({
                         alt={tech}
                       />
                     </>
-                  )
+                  );
                 })}
               </div>
               <p className="mt-2 text-sm dark:text-gray-100 sm:mt-4 sm:text-base">
@@ -78,7 +78,7 @@ export default function ProjectCard({
         </LinkSwitch>
       </div>
     </div>
-  )
+  );
 }
 
 function LinkSwitch({
@@ -86,23 +86,23 @@ function LinkSwitch({
   children,
   projectLink,
 }: {
-  external: boolean
-  children: React.ReactElement
-  projectLink: string
+  external: boolean;
+  children: React.ReactElement;
+  projectLink: string;
 }) {
   if (external === true) {
     return (
       <a rel="noopener noreferrer" target="_blank" href={projectLink}>
         {children}
       </a>
-    )
+    );
   } else {
-    return <Link to={projectLink}>{children}</Link>
+    return <Link to={projectLink}>{children}</Link>;
   }
 }
 
 function getTechIcon(tech: keyof svgLookupObject) {
-  const icon = svgLookup[tech]
-  if (!icon) return null
-  return icon
+  const icon = svgLookup[tech];
+  if (!icon) return null;
+  return icon;
 }

@@ -1,26 +1,24 @@
-import {
+import { Form, Link, useActionData } from "@remix-run/react";
+import type {
   ActionFunction,
-  Form,
-  Link,
   LinksFunction,
   MetaFunction,
-  useActionData,
-} from 'remix'
-import stylesURL from '~/styles/tailwind.css'
-import Layout from '~/components/layout'
-import { useOptionalUser } from '~/utils'
+} from "@remix-run/node";
+import stylesURL from "~/styles/tailwind.css";
+import Layout from "~/components/layout";
+import { useOptionalUser } from "~/utils";
 
 export const links: LinksFunction = () => {
   return [
     {
-      rel: 'stylesheet',
+      rel: "stylesheet",
       href: stylesURL,
     },
-  ]
-}
+  ];
+};
 
 export default function Index() {
-  const user = useOptionalUser()
+  const user = useOptionalUser();
   return (
     <>
       <div className="py-24 lg:py-32">
@@ -47,9 +45,9 @@ export default function Index() {
                 today and, inexorably, on its future.
               </p>
               <p>
-                You can see some of my work in my{' '}
+                You can see some of my work in my{" "}
                 <Link to="/portfolio">portfolio</Link>. If you would like to get
-                in contact with me about a potential project, email me at{' '}
+                in contact with me about a potential project, email me at{" "}
                 <a
                   rel="noopener noreferrer"
                   target="_blank"
@@ -64,5 +62,5 @@ export default function Index() {
         </div>
       </section>
     </>
-  )
+  );
 }
