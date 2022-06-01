@@ -1,5 +1,5 @@
-import { Link, useCatch, useLocation } from 'remix'
-import { MENU, SamBlekhmanLogo } from './icons'
+import { Link, useCatch, useLocation } from "remix";
+import { MENU, SamBlekhmanLogo } from "./icons";
 import {
   Drawer,
   DrawerBody,
@@ -10,12 +10,12 @@ import {
   useDisclosure,
   Button,
   Divider,
-} from '@chakra-ui/react'
-import React from 'react'
+} from "@chakra-ui/react";
+import React from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const location = useLocation()
-  const isAEPi = location.pathname.indexOf('aepi') > 0
+  const location = useLocation();
+  const isAEPi = location.pathname.indexOf("aepi") > 0;
   return (
     <>
       <header>
@@ -128,12 +128,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
     </>
-  )
+  );
 }
 
 function DrawerExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef<HTMLButtonElement>(null)
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -176,5 +176,5 @@ function DrawerExample() {
         </DrawerContent>
       </Drawer>
     </>
-  )
+  );
 }

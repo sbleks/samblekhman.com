@@ -8,6 +8,7 @@ import {
 } from 'remix'
 import stylesURL from '~/styles/tailwind.css'
 import Layout from '~/components/layout'
+import { useOptionalUser } from '~/utils'
 
 export const links: LinksFunction = () => {
   return [
@@ -19,6 +20,7 @@ export const links: LinksFunction = () => {
 }
 
 export default function Index() {
+  const user = useOptionalUser()
   return (
     <>
       <div className="py-24 lg:py-32">

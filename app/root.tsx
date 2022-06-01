@@ -1,54 +1,63 @@
 import {
+  json,
   Link,
   Links,
   LiveReload,
+  LoaderFunction,
   Meta,
   MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
   useCatch,
-} from 'remix'
-import type { LinksFunction } from 'remix'
-import styles from '~/tailwind.css'
-import Layout from './components/layout'
-import { ChakraProvider } from '@chakra-ui/react'
+} from "remix";
+import type { LinksFunction } from "remix";
+import styles from "~/tailwind.css";
+import Layout from "./components/layout";
+import { ChakraProvider } from "@chakra-ui/react";
+import { getUser } from "./session.server";
 
 export const meta: MetaFunction = () => {
   return {
-    title: 'Sam Blekhman',
-    'theme-color': '#0f172a',
+    title: "Sam Blekhman",
+    "theme-color": "#0f172a",
     description:
-      'My name is Sam Blekhman. I am an operations and technology engineer that believes in making the world a better place. I work with organizations making an impact on both the world as we know it today and, inexorably, on its future.',
-  }
-}
+      "My name is Sam Blekhman. I am an operations and technology engineer that believes in making the world a better place. I work with organizations making an impact on both the world as we know it today and, inexorably, on its future.",
+  };
+};
 
 export const links: LinksFunction = () => {
   return [
     {
-      rel: 'icon',
-      href: '/sfavicon32.png',
-      type: 'image/png',
-      sizes: '32x32',
+      rel: "icon",
+      href: "/sfavicon32.png",
+      type: "image/png",
+      sizes: "32x32",
     },
     {
-      rel: 'apple-touch-icon',
-      href: '/sfavicon180.png',
-      sizes: '180x180',
+      rel: "apple-touch-icon",
+      href: "/sfavicon180.png",
+      sizes: "180x180",
     },
     {
-      rel: 'icon',
-      href: '/sfavicon16.png',
-      type: 'image/png',
-      sizes: '16x16',
+      rel: "icon",
+      href: "/sfavicon16.png",
+      type: "image/png",
+      sizes: "16x16",
     },
     {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap',
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap",
     },
-    { rel: 'stylesheet', href: styles },
-  ]
-}
+    { rel: "stylesheet", href: styles },
+  ];
+};
+
+export const loader: LoaderFunction = async ({ request }) => {
+  return json({
+    user: await getUser(request),
+  });
+};
 
 export default function App() {
   return (
@@ -59,11 +68,11 @@ export default function App() {
         </Layout>
       </ChakraProvider>
     </Document>
-  )
+  );
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error)
+  console.error(error);
   return (
     <Document title="Error!">
       <ChakraProvider>
@@ -75,14 +84,14 @@ export function ErrorBoundary({ error }: { error: Error }) {
         </Layout>
       </ChakraProvider>
     </Document>
-  )
+  );
 }
 
 // https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
-  let caught = useCatch()
+  let caught = useCatch();
 
-  let message
+  let message;
   switch (caught.status) {
     case 401:
       message = (
@@ -90,18 +99,18 @@ export function CatchBoundary() {
           Oops! Looks like you tried to visit a page that you do not have access
           to.
         </p>
-      )
-      break
+      );
+      break;
     case 404:
       message = (
         <p className="text-white">
           Oops! Looks like you tried to visit a page that does not exist.
         </p>
-      )
-      break
+      );
+      break;
 
     default:
-      throw new Error(caught.data || caught.statusText)
+      throw new Error(caught.data || caught.statusText);
   }
 
   return (
@@ -115,18 +124,18 @@ export function CatchBoundary() {
         </Layout>
       </ChakraProvider>
     </Document>
-  )
+  );
 }
 
 function Document({
   children,
-  title = 'Sam Blekhman',
+  title = "Sam Blekhman",
 }: {
-  children: React.ReactNode
-  title?: string
+  children: React.ReactNode;
+  title?: string;
 }) {
   return (
-    <html lang="en" className="dark ">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -141,5 +150,5 @@ function Document({
         <LiveReload />
       </body>
     </html>
-  )
+  );
 }

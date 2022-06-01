@@ -6,3 +6,6 @@ node_modules
 .DS_Store
 /netlify/functions/server/index.js
 sendgrid.env
+/.env
+
+/app/styles/tailwind.css
