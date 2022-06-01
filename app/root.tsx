@@ -14,7 +14,7 @@ import type {
   LoaderFunction,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import styles from "~/tailwind.css";
+import styles from "~/styles/tailwind.css";
 import Layout from "./components/layout";
 import { ChakraProvider } from "@chakra-ui/react";
 import { getUser } from "./session.server";
