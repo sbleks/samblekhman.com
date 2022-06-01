@@ -1,17 +1,15 @@
 import {
-  json,
   Link,
   Links,
   LiveReload,
-  LoaderFunction,
   Meta,
-  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
   useCatch,
-} from "remix";
-import type { LinksFunction } from "remix";
+} from "@remix-run/react";
+import type { LinksFunction } from "@remix-run/node";
+import { MetaFunction, LoaderFunction, json } from "@remix-run/node";
 import styles from "~/tailwind.css";
 import Layout from "./components/layout";
 import { ChakraProvider } from "@chakra-ui/react";

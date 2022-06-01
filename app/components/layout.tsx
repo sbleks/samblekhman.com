@@ -1,4 +1,4 @@
-import { Link, useCatch, useLocation } from "remix";
+import { Link, useCatch, useLocation } from "@remix-run/react";
 import { MENU, SamBlekhmanLogo } from "./icons";
 import {
   Drawer,
