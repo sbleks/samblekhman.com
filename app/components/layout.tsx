@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <>
                     <span>|</span>
                     <Link to="/aepi">Donation Link Generator</Link>
-                    <Link to="/aepi/events">Event Registration</Link>
+                    {/* <Link to="/aepi/events">Event Registration</Link> */}
                   </>
                 ) : null}
               </div>
