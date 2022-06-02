@@ -1,8 +1,10 @@
 node_modules
 /.cache
-/netlify/functions/server/build
+/netlify/functions/server/index.js
 /public/build
 /.netlify
+
+/.env
+
+/app/styles/tailwind.css
 .DS_Store
-/netlify/functions/server/index.js
-sendgrid.env
