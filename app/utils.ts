@@ -2,6 +2,14 @@ import { useMemo } from "react";
 import { useMatches } from "@remix-run/react";
 import type { User } from "./models/user.server";
 
+export function checkEnv(key: string) {
+  const value = process.env[key];
+  if (!value) {
+    throw new Error(`key ${key} does not exist in the environment`);
+  }
+  return value;
+}
+
 export function useMatchesData(id: string) {
   const matchingRoutes = useMatches();
   const route = useMemo(
