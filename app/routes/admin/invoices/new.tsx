@@ -6,7 +6,7 @@ import type { Client } from "~/models/invoices.server";
 import { getClients, getInvoices } from "~/models/invoices.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const invoices = await getInvoices();
+  const invoices = await getInvoices({});
   const clients = await getClients();
   return { invoices, clients };
 };

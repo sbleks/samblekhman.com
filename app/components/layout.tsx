@@ -11,11 +11,27 @@ import {
   Button,
   Divider,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { ReactChild } from "react";
+import { AdminNavLinks } from "~/routes/admin";
+
+function ConditionalWrapper({
+  show = true,
+  children,
+}: {
+  show: boolean;
+  children: unknown;
+}) {
+  if (show) {
+    return <>{children}</>;
+  } else {
+    return null;
+  }
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isAEPi = location.pathname.indexOf("aepi") > 0;
+  const isAdmin = location.pathname.indexOf("admin") > 0;
   return (
     <>
       <header>
@@ -26,18 +42,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <SamBlekhmanLogo />
               </Link>
               <div className="ml-10 hidden space-x-8 sm:block">
-                <Link to="/portfolio">Portfolio</Link>
-                {isAEPi ? (
-                  <>
-                    <span>|</span>
-                    <Link to="/aepi">Donation Link Generator</Link>
-                    {/* <Link to="/aepi/events">Event Registration</Link> */}
-                  </>
-                ) : null}
+                <ConditionalWrapper show={isAdmin}>
+                  <h2 className="text-4xl font-semibold text-white">
+                    SB Tech Admin Portal
+                  </h2>
+                </ConditionalWrapper>
+
+                <ConditionalWrapper show={!isAdmin}>
+                  <Link to="/portfolio">Portfolio</Link>
+                </ConditionalWrapper>
+
+                <ConditionalWrapper show={isAEPi}>
+                  <span>|</span>
+                  <Link to="/aepi">Donation Link Generator</Link>
+                  {/* <Link to="/aepi/events">Event Registration</Link> */}
+                </ConditionalWrapper>
               </div>
             </div>
             <div className="block text-white sm:hidden ">
-              <DrawerExample />
+              <DrawerExample isAdmin={isAdmin} />
             </div>
           </div>
         </nav>
@@ -131,7 +154,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function DrawerExample() {
+function DrawerExample({ isAdmin }: { isAdmin: boolean }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<HTMLButtonElement>(null);
 
@@ -165,12 +188,21 @@ function DrawerExample() {
           <Divider></Divider>
           <DrawerBody>
             <div className="flex flex-col space-y-4 text-white">
-              <Link reloadDocument to="/">
-                Home
-              </Link>
-              <Link reloadDocument to="/portfolio">
-                Portfolio
-              </Link>
+              <ConditionalWrapper show={!isAdmin}>
+                <Link reloadDocument to="/">
+                  Home
+                </Link>
+                <Link reloadDocument to="/portfolio">
+                  Portfolio
+                </Link>
+              </ConditionalWrapper>
+              <ConditionalWrapper show={isAdmin}>
+                <h2 className="text-xl font-semibold text-white">
+                  SB Tech Admin Portal
+                </h2>
+                <hr />
+                <AdminNavLinks />
+              </ConditionalWrapper>
             </div>
           </DrawerBody>
         </DrawerContent>
