@@ -90,12 +90,15 @@ export default function Login() {
   }, [actionData]);
 
   return (
-    <div className="flex min-h-full flex-col justify-center">
-      <div className="mx-auto w-full max-w-md px-8">
+    <div className="my-auto flex min-h-full flex-col justify-center">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-slate-800 px-8 py-10 shadow">
         <Form method="post" className="space-y-6" noValidate>
           <div>
-            <label className="text-sm font-medium" htmlFor="email">
-              <span className="block text-gray-700">Email Address</span>
+            <label
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="email"
+            >
+              <span className="block">Email Address</span>
               {actionData?.errors?.email && (
                 <span className="block pt-1 text-red-700" id="email-error">
                   {actionData?.errors?.email}
@@ -103,22 +106,25 @@ export default function Login() {
               )}
             </label>
             <input
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
               autoComplete="email"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               type="email"
+              placeholder="email@mail.com"
               name="email"
               id="email"
               aria-invalid={actionData?.errors?.email ? true : undefined}
               aria-describedby="email-error"
               ref={emailRef}
+              required
             />
           </div>
           <div>
-            <label className="text-sm font-medium" htmlFor="password">
-              <span className="block text-gray-700">Password</span>
-              <span className="block font-light text-gray-700">
-                Must have at least 6 characters.
-              </span>
+            <label
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="password"
+            >
+              <span className="block">Password</span>
+
               {actionData?.errors?.password && (
                 <span className="pt-1 text-red-700" id="password-error">
                   {actionData?.errors?.password}
@@ -130,14 +136,20 @@ export default function Login() {
               type="password"
               name="password"
               autoComplete=""
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              placeholder="•••••••••"
               aria-invalid={actionData?.errors?.password ? true : undefined}
               aria-describedby="password-error"
               ref={passwordRef}
+              required
             />
+            <span className="block pt-1 font-light text-gray-400">
+              Must have at least 6 characters.
+            </span>
           </div>
           <button
-            className="w-full rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            // className="w-full rounded bg-blue-700  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             type="submit"
           >
             Log in
@@ -146,22 +158,22 @@ export default function Login() {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                 id="remember"
                 name="remember"
                 type="checkbox"
               />
               <label
-                className="ml-2 block text-sm text-gray-900"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                 htmlFor="remember"
               >
                 Remember me
               </label>
             </div>
-            <div className="text-center text-sm text-gray-500">
+            <div className="text-center text-sm text-gray-900 dark:text-gray-400">
               Don't have an account?{" "}
               <Link
-                className="text-blue-500 underline"
+                className="text-blue-600 hover:underline dark:text-blue-500"
                 to={{ pathname: "/join" }}
               >
                 Sign up

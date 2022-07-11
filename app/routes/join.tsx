@@ -6,7 +6,11 @@ import type {
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 import { createUserSession, getUserId } from "~/session.server";
-import { createUser, getProfileByEmail } from "~/models/user.server";
+import {
+  createUser,
+  getProfileByEmail,
+  validateAccessCode,
+} from "~/models/user.server";
 import { validateEmail } from "~/utils";
 import * as React from "react";
 
@@ -20,6 +24,7 @@ interface ActionData {
   errors: {
     email?: string;
     password?: string;
+    accessCode?: string;
   };
 }
 
@@ -33,6 +38,7 @@ export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
+  const accessCode = formData.get("accessCode");
   const redirectTo = formData.get("redirectTo");
 
   // Ensure the email is valid
@@ -47,6 +53,13 @@ export const action: ActionFunction = async ({ request }) => {
   if (typeof password !== "string") {
     return json(
       { errors: { password: "Valid password is required." } },
+      { status: 400 }
+    );
+  }
+
+  if (typeof accessCode !== "string") {
+    return json(
+      { errors: { accessCode: "Valid access code is required." } },
       { status: 400 }
     );
   }
@@ -69,6 +82,15 @@ export const action: ActionFunction = async ({ request }) => {
     );
   }
 
+  const accessCodeData = await validateAccessCode(accessCode);
+  const isValidAccessCode = Boolean(accessCodeData === null);
+  if (!isValidAccessCode) {
+    return json<ActionData>(
+      { errors: { accessCode: "That is not a valid Access Code." } },
+      { status: 400 }
+    );
+  }
+
   const user = await createUser(email, password);
 
   return createUserSession({
@@ -85,6 +107,7 @@ export default function Join() {
 
   const actionData = useActionData() as ActionData;
   const emailRef = React.useRef<HTMLInputElement>(null);
+  const accessCodeRef = React.useRef<HTMLInputElement>(null);
   const passwordRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
@@ -95,12 +118,36 @@ export default function Join() {
     if (actionData?.errors?.password) {
       passwordRef?.current?.focus();
     }
+
+    if (actionData?.errors?.accessCode) {
+      accessCodeRef?.current?.focus();
+    }
   }, [actionData]);
 
   return (
     <div className="flex min-h-full flex-col justify-center">
       <div className="mx-auto w-full max-w-md px-8">
         <Form className="space-y-6" method="post" noValidate>
+          <div>
+            <label className="text-sm font-medium" htmlFor="accessCode">
+              <span className="block text-gray-700">Access Code</span>
+              {actionData?.errors?.accessCode && (
+                <span className="block pt-1 text-red-700" id="accessCode-error">
+                  {actionData?.errors?.accessCode}
+                </span>
+              )}
+            </label>
+            <input
+              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+              type="text"
+              name="accessCode"
+              id="accessCode"
+              required
+              aria-invalid={actionData?.errors?.accessCode ? true : undefined}
+              aria-describedby="accessCode-error"
+              ref={accessCodeRef}
+            />
+          </div>
           <div>
             <label className="text-sm font-medium" htmlFor="email">
               <span className="block text-gray-700">Email Address</span>

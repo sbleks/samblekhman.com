@@ -53,6 +53,17 @@ export async function getProfileByEmail(email?: string) {
   if (data) return data;
 }
 
+export async function validateAccessCode(accessCode: string) {
+  const { data, error } = await supabase
+    .from("access_codes")
+    .select("id, email")
+    .eq("id", accessCode)
+    .single();
+
+  if (error) return null;
+  if (data) return data;
+}
+
 export async function verifyLogin(email: string, password: string) {
   const { user, error } = await supabase.auth.signIn({
     email,
