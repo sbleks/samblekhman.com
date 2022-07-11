@@ -86,7 +86,14 @@ export const action: ActionFunction = async ({ request }) => {
   const isValidAccessCode = Boolean(accessCodeData === null);
   if (!isValidAccessCode) {
     return json<ActionData>(
-      { errors: { accessCode: "That is not a valid Access Code." } },
+      { errors: { accessCode: "That is not a valid access code." } },
+      { status: 400 }
+    );
+  }
+
+  if (accessCodeData.email !== email) {
+    return json<ActionData>(
+      { errors: { accessCode: "That is not a valid access code." } },
       { status: 400 }
     );
   }
@@ -142,6 +149,7 @@ export default function Join() {
               type="text"
               name="accessCode"
               id="accessCode"
+              autoComplete=""
               required
               aria-invalid={actionData?.errors?.accessCode ? true : undefined}
               aria-describedby="accessCode-error"

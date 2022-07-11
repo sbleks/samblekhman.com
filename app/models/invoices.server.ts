@@ -4,6 +4,7 @@ export type Client = { id: string; name: string };
 
 export type Invoice = {
   id: string;
+  client_id: string;
   start_date: Date;
   end_date: Date;
   created_at: Date;
@@ -11,7 +12,6 @@ export type Invoice = {
   paid: boolean;
   sent: boolean;
   due_date: Date;
-  client_id: string;
 };
 
 type InvoiceOptions = {
@@ -21,6 +21,7 @@ type InvoiceOptions = {
 
 export type InvoiceItem = {
   id: string;
+  client_id: string;
   invoice_id?: null | number;
   item: string;
   hours: number;
@@ -28,7 +29,6 @@ export type InvoiceItem = {
   created_at: Date;
   updated_at: Date;
   ticket: number | null;
-  client_id: string;
 };
 
 export async function GetInvoiceItems({
