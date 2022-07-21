@@ -1,4 +1,10 @@
-import { Link, useCatch, useLocation } from "@remix-run/react";
+import {
+  Form,
+  Link,
+  useCatch,
+  useLoaderData,
+  useLocation,
+} from "@remix-run/react";
 import { MENU, SamBlekhmanLogo } from "./icons";
 import {
   Drawer,
@@ -10,25 +16,45 @@ import {
   useDisclosure,
   Button,
   Divider,
+  DrawerFooter,
 } from "@chakra-ui/react";
-import React, { ReactChild } from "react";
+import React, { ReactChild, ReactChildren } from "react";
 import { AdminNavLinks } from "~/routes/admin";
+import { json, LoaderFunction } from "@remix-run/node";
+import { getUser } from "~/session.server";
+import { User } from "~/models/user.server";
+import { ReactPropTypes } from "react";
 
 function ConditionalWrapper({
   show = true,
   children,
+  ...props
 }: {
   show: boolean;
-  children: unknown;
+  children: any;
 }) {
+  if (show && Object.values(props).length > 0) {
+    // console.log("making a div for", children, "props:", props);
+    return <div {...props}>{children}</div>;
+  }
   if (show) {
+    // console.log("making a frag for", children);
     return <>{children}</>;
   } else {
     return null;
   }
 }
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await getUser(request);
+  console.log("loader user", user);
+  return json({ user: user });
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { user } = useLoaderData();
+  const role = user?.role ? user.role : "user";
+  console.log("user:", user, "role", role);
   const location = useLocation();
   const isAEPi = location.pathname.indexOf("aepi") > 0;
   const isAdmin = location.pathname.indexOf("admin") > 0;
@@ -42,6 +68,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <SamBlekhmanLogo />
               </Link>
               <div className="ml-10 hidden space-x-8 sm:block">
+                <ConditionalWrapper show={role === "admin" && !isAdmin}>
+                  <Link to="/admin">Admin Portal</Link>
+                </ConditionalWrapper>
                 <ConditionalWrapper show={isAdmin}>
                   <h2 className="text-4xl font-semibold text-white">
                     SB Tech Admin Portal
@@ -60,7 +89,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
             <div className="block text-white sm:hidden ">
-              <DrawerExample isAdmin={isAdmin} />
+              <DrawerExample isAdmin={isAdmin} role={role} user={user} />
+            </div>
+            <div className="hidden text-white sm:block ">
+              <ConditionalWrapper show={!user}>
+                <Link
+                  to="/login"
+                  className="mr-2 mb-2 rounded-lg border border-gray-800 px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-800"
+                >
+                  Login
+                </Link>
+              </ConditionalWrapper>
+              <ConditionalWrapper show={user}>
+                <Form method="post" action="/logout">
+                  <button
+                    className="mr-2 mb-2 rounded-lg border border-gray-800 px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-800"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </Form>
+              </ConditionalWrapper>
             </div>
           </div>
         </nav>
@@ -154,7 +203,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function DrawerExample({ isAdmin }: { isAdmin: boolean }) {
+function DrawerExample({
+  isAdmin,
+  role,
+  user,
+}: {
+  isAdmin: boolean;
+  role: string | null;
+  user: User;
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<HTMLButtonElement>(null);
 
@@ -189,22 +246,43 @@ function DrawerExample({ isAdmin }: { isAdmin: boolean }) {
           <DrawerBody>
             <div className="flex flex-col space-y-4 text-white">
               <ConditionalWrapper show={!isAdmin}>
-                <Link reloadDocument to="/">
+                <Link key="home" reloadDocument to="/">
                   Home
                 </Link>
-                <Link reloadDocument to="/portfolio">
+                <Link key="portfolio" reloadDocument to="/portfolio">
                   Portfolio
                 </Link>
               </ConditionalWrapper>
-              <ConditionalWrapper show={isAdmin}>
+              <ConditionalWrapper show={isAdmin || role === "admin"}>
                 <h2 className="text-xl font-semibold text-white">
                   SB Tech Admin Portal
                 </h2>
                 <hr />
-                <AdminNavLinks />
+                <AdminNavLinks variant="mobile" />
               </ConditionalWrapper>
             </div>
           </DrawerBody>
+          <DrawerFooter>
+            <ConditionalWrapper show={!user}>
+              <Link
+                reloadDocument
+                to="/login"
+                className="mr-2 mb-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800"
+              >
+                Login
+              </Link>
+            </ConditionalWrapper>
+            <ConditionalWrapper show={Boolean(user)}>
+              <Form method="post" action="/logout" reloadDocument>
+                <button
+                  className="mr-2 mb-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800"
+                  type="submit"
+                >
+                  Logout
+                </button>
+              </Form>
+            </ConditionalWrapper>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>

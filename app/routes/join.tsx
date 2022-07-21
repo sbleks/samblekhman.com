@@ -83,8 +83,10 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   const accessCodeData = await validateAccessCode(accessCode);
-  const isValidAccessCode = Boolean(accessCodeData === null);
-  if (!isValidAccessCode) {
+  console.log("data:", accessCodeData, "accesscode:", accessCode);
+  const isInvalidAccessCode = Boolean(accessCodeData === null);
+  if (isInvalidAccessCode) {
+    console.log(`The access code provided does not exist`);
     return json<ActionData>(
       { errors: { accessCode: "That is not a valid access code." } },
       { status: 400 }
@@ -92,6 +94,7 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   if (accessCodeData.email !== email) {
+    console.log(`The access code provided is not for email ${email}`);
     return json<ActionData>(
       { errors: { accessCode: "That is not a valid access code." } },
       { status: 400 }
@@ -132,12 +135,15 @@ export default function Join() {
   }, [actionData]);
 
   return (
-    <div className="flex min-h-full flex-col justify-center">
-      <div className="mx-auto w-full max-w-md px-8">
-        <Form className="space-y-6" method="post" noValidate>
+    <div className="my-auto flex min-h-full flex-col justify-center">
+      <div className="mx-auto w-full max-w-md rounded-xl bg-slate-800 px-8 py-10 shadow">
+        <Form method="post" className="space-y-6" noValidate>
           <div>
-            <label className="text-sm font-medium" htmlFor="accessCode">
-              <span className="block text-gray-700">Access Code</span>
+            <label
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="accessCode"
+            >
+              <span className="block">Access Code</span>
               {actionData?.errors?.accessCode && (
                 <span className="block pt-1 text-red-700" id="accessCode-error">
                   {actionData?.errors?.accessCode}
@@ -145,11 +151,11 @@ export default function Join() {
               )}
             </label>
             <input
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               type="text"
               name="accessCode"
               id="accessCode"
-              autoComplete=""
+              autoComplete="access-code"
               required
               aria-invalid={actionData?.errors?.accessCode ? true : undefined}
               aria-describedby="accessCode-error"
@@ -157,8 +163,11 @@ export default function Join() {
             />
           </div>
           <div>
-            <label className="text-sm font-medium" htmlFor="email">
-              <span className="block text-gray-700">Email Address</span>
+            <label
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="email"
+            >
+              <span className="block ">Email Address</span>
               {actionData?.errors?.email && (
                 <span className="block pt-1 text-red-700" id="email-error">
                   {actionData?.errors?.email}
@@ -166,8 +175,10 @@ export default function Join() {
               )}
             </label>
             <input
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              autoComplete="email"
               type="email"
+              placeholder="email@mail.com"
               name="email"
               id="email"
               required
@@ -177,11 +188,12 @@ export default function Join() {
             />
           </div>
           <div>
-            <label className="text-sm font-medium" htmlFor="password">
-              <span className="block text-gray-700">Password</span>
-              <span className="block font-light text-gray-700">
-                Must have at least 6 characters.
-              </span>
+            <label
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="password"
+            >
+              <span className="block">Password</span>
+
               {actionData?.errors?.password && (
                 <span className="pt-1 text-red-700" id="password-error">
                   {actionData?.errors?.password}
@@ -192,25 +204,29 @@ export default function Join() {
               id="password"
               type="password"
               name="password"
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              placeholder="•••••••••"
               autoComplete="new-password"
               aria-invalid={actionData?.errors?.password ? true : undefined}
               aria-describedby="password-error"
               ref={passwordRef}
             />
+            <span className="block pt-1 font-light text-gray-400">
+              Must have at least 6 characters.
+            </span>
           </div>
           <button
-            className="w-full rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
+            className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="submit"
           >
             Create Account
           </button>
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <div className="flex items-center justify-center">
-            <div className="text-center text-sm text-gray-500">
+            <div className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400">
               Already have an account?{" "}
               <Link
-                className="text-blue-500 underline"
+                className="text-blue-600 hover:underline dark:text-blue-500"
                 to={{
                   pathname: "/login",
                   search: searchParams.toString(),

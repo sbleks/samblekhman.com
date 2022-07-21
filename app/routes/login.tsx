@@ -67,13 +67,13 @@ export const action: ActionFunction = async ({ request }) => {
     request,
     userId: user.id,
     remember: remember === "on" ? true : false,
-    redirectTo: typeof redirectTo === "string" ? redirectTo : "/notes",
+    redirectTo: typeof redirectTo === "string" ? redirectTo : "/",
   });
 };
 
 export default function Login() {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") ?? "/notes";
+  const redirectTo = searchParams.get("redirectTo") ?? "/";
 
   const actionData = useActionData() as ActionData;
   const emailRef = React.useRef<HTMLInputElement>(null);
@@ -135,7 +135,7 @@ export default function Login() {
               id="password"
               type="password"
               name="password"
-              autoComplete=""
+              autoComplete="password"
               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="•••••••••"
               aria-invalid={actionData?.errors?.password ? true : undefined}
@@ -148,7 +148,7 @@ export default function Login() {
             </span>
           </div>
           <button
-            className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             // className="w-full rounded bg-blue-700  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             type="submit"
           >
@@ -171,12 +171,12 @@ export default function Login() {
               </label>
             </div>
             <div className="text-center text-sm text-gray-900 dark:text-gray-400">
-              Don't have an account?{" "}
+              Have an access code?{" "}
               <Link
                 className="text-blue-600 hover:underline dark:text-blue-500"
                 to={{ pathname: "/join" }}
               >
-                Sign up
+                Click here
               </Link>
             </div>
           </div>
